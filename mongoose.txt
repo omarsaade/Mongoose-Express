@@ -1,0 +1,18 @@
+create a schema:
+
+we use a schema to define the shape of documents within a 
+collection in Mongodb.
+ 
+ playground : database
+
+ courses: collection
+
+ jawet el collection fi el documents li hye el data
+
+ collection : is like Table in relational database
+ Documents  : is like row in relational database
+
+
+ concept of schema is specific to mongoose..not to Mongodb
+
+ Buffer: for storing binary data
