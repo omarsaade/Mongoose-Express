@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/omarsaade/Mongoose-Express#readme",
   "dependencies": {
-    "mongoose": "^5.0.1"
+    "mongoose": "^5.0.0"
   }
 }
