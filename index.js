@@ -16,7 +16,7 @@ const Course = mongoose.model("Course", courseSchema);
 
 async function createCourse() {
   const course = new Course({
-    name: "Mosh",
+    author: "Mosh",
     author: "Maximillian shwarzmuller",
     tags: ["node", "backend"],
     isPublished: true,
@@ -31,11 +31,16 @@ async function createCourse() {
 async function getCourses() {
   const courses = await Course
     // .find({
-    //   name: "Mosh",
+    //   author: "Mosh",
     //   isPublished: true,
     // })
-    // .find({ price: { $gt: 10, $lte: 20 } })
-    .find({ price: { $in: [10, 15, 20] } })
+    // Starts with Mosh and it doesn't matter what we have after
+    .find({ author: /^Mosh/ })
+    // Ends with Hamedani case insensitive
+    .find({ author: /Hamedani$/i })
+    // Contains Mosh everywhere
+    // .*   yaane we can have zero or more characters
+    .find({ author: /.*Mosh.*/ })
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
@@ -43,20 +48,3 @@ async function getCourses() {
 }
 
 getCourses();
-
-/*
-
-eq(equal)
-ne(not equal)
-gt (greater than)
-gte (greater than or equal to)
-lt (less than)
-lte (less than or equal to)
-in
-nin (not in)
-
-
-lets imagine our courses have a price property
-
-
-*/
