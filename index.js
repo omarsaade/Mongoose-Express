@@ -16,8 +16,8 @@ const Course = mongoose.model("Course", courseSchema);
 
 async function createCourse() {
   const course = new Course({
+    name: "Mosh Hamedani",
     author: "Mosh",
-    author: "Maximillian shwarzmuller",
     tags: ["node", "backend"],
     isPublished: true,
   });
@@ -29,21 +29,18 @@ async function createCourse() {
 // createCourse();
 
 async function getCourses() {
-  const courses = await Course
-    // .find({
-    //   author: "Mosh",
-    //   isPublished: true,
-    // })
-    // Starts with Mosh and it doesn't matter what we have after
-    .find({ author: /^Mosh/ })
-    // Ends with Hamedani case insensitive
-    .find({ author: /Hamedani$/i })
-    // Contains Mosh everywhere
-    // .*   yaane we can have zero or more characters
-    .find({ author: /.*Mosh.*/ })
-    .limit(10)
+  const pageNumber = 2;
+  const pageSize = 10;
+  //          /api/courses?pageNumber=2&pageSize=10
+  const courses = await Course.find({
+    author: "Mosh",
+    isPublished: true,
+  })
+    //specified the number of docuemnts  to skip
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize)
     .sort({ name: 1 })
-    .select({ name: 1, tags: 1 });
+    .count();
   console.log(courses);
 }
 
