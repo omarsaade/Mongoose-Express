@@ -1,3 +1,13 @@
+//  Updating Documents
+
+//  How to update documents in mongodb database ?
+//             Query first approach
+
+//     Approach 1: Query first
+//     findById()
+//     Modify its properties
+//     save()
+
 const mongoose = require("mongoose");
 
 mongoose
@@ -17,9 +27,10 @@ const courseSchema = new mongoose.Schema({
 const Course = mongoose.model("Course", courseSchema);
 
 async function updateCourse(id) {
+  // query first
   const course = await Course.findById(id);
   if (!course) return;
-
+  //update
   course.isPublished = true;
   course.author = "Omar Saade";
   //   course.set({
