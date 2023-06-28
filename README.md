@@ -65,6 +65,8 @@ const result = await Course.update({ _id: id }, {
 });
 
 
+
+
 // Updating a document (update first) and return it
 const result = await Course.findByIdAndUpdate({ _id: id }, {
  $set: { name: ‘…’ }
